@@ -1,13 +1,10 @@
-// import fetchData from './js/pixabay-api';
-// import moduleName from './js/render-functions';
-
 
 import searchImages from './js/pixabay-api';
-import { showError, createGalleryMarkup, refreshGallery } from './js/render-functions';
+import { showError, renderGallery, clearGallery, showLoader, hideLoader } from './js/render-functions';
 
 const searchForm = document.querySelector(".form");
 const searchInput = document.querySelector("input");
-// const submitBtn = document.querySelector("button");
+
 
 const onSearch =  (event) => {
     event.preventDefault();  
@@ -15,15 +12,16 @@ const onSearch =  (event) => {
     if (userSearch === "") {
         return
     }
+    clearGallery();
+    showLoader();
     searchImages(userSearch, (result) => {
-        console.log(result);
-        console.log(result.length);
+        hideLoader();
         if (result.length === 0) {
             showError();
         } else {
-            refreshGallery(result);
+            renderGallery(result);
         }
-    
+     searchInput.value = "";
     });
     
 }

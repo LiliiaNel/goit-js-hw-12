@@ -1,6 +1,3 @@
-// У файлі render-functions.js створи функції для відображення елементів інтерфейсу
-// (додавання, оновлення, очищення елементів галереї; відображення, приховування лоедера).
-
 
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
@@ -25,19 +22,18 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const galleryList = document.querySelector("ul.gallery");
 
-export function createGalleryMarkup(images) {
+function createGalleryMarkup(images) {
     return images
-      .map(({ comments, downloads, largeImageURL, likes, previewURL, views, tags }) => {
-        console.log(largeImageURL);
+      .map(({ comments, downloads, largeImageURL, likes, webformatURL, views, tags }) => {
         return `<li class="gallery-item">
         <a class="gallery-link" href="${largeImageURL}">
-          <img class="gallery-image" src="${previewURL}" alt="${tags}" />
+          <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
         </a>
         <ul class="image-text-list">
-          <li>Likes: ${likes}</a></li>
-          <li>Views: ${views}</a></li>
-          <li>Comments: ${comments}</a></li>
-          <li>Downloads: ${downloads}</a></li>
+          <li><span class="img-text">Likes</span> ${likes}</a></li>
+          <li><span class="img-text">Views</span> ${views}</a></li>
+          <li><span class="img-text">Comments</span> ${comments}</a></li>
+          <li><span class="img-text">Downloads</span> ${downloads}</a></li>
         </ul>
         </li>`
         })
@@ -50,8 +46,22 @@ let options = {
 };
 const lightbox = new SimpleLightbox('.gallery a', options);
 
-export function refreshGallery(images) {
-  galleryList.innerHTML = "";
+export function renderGallery(images) {
+  clearGallery();
   galleryList.insertAdjacentHTML("beforeend", createGalleryMarkup(images));
   lightbox.refresh();
+}
+
+export function clearGallery() {
+galleryList.innerHTML = "";
+}
+
+const loader = document.querySelector(".loader");
+
+export function showLoader() {
+  loader.classList.remove("loader-hidden");
+}
+
+export function hideLoader() {
+  loader.classList.add("loader-hidden");
 }

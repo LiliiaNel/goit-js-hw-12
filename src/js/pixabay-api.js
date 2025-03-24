@@ -1,13 +1,5 @@
-// У файлі pixabay-api.js зберігай функції для HTTP-запитів.
-
-// libraries
 
 import axios from "axios";
-
-import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
-
-
 
 const API_KEY = "49358880-33c4acc352e7c36c64dc2caaa";
 const BASE_URL = "https://pixabay.com/api/";

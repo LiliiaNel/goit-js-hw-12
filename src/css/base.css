@@ -27,6 +27,9 @@ body {
 
 main {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 main:has(.back-link) {
   text-align: center;
