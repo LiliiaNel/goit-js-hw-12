@@ -12,16 +12,22 @@ const options = {
         image_type: "photo",
         orientation: "horizontal",
         safesearch: "true",
+        per_page: 15,
+        page: 1,
     }
 };
 
 
+export default async function searchImages(query, page, callback) {
+    try {
+        options.params.q = query;
+        options.params.page = page;
+        const response = await axios.get(BASE_URL, options);
+        callback(response.data.hits, response.data.totalHits);
+    } catch (error) {
+        callback([], 1, 0); 
+    };
+}
 
-export default function searchImages(query, callback) {
-    options.params.q = query;
-     axios.get(BASE_URL, options)
-        .then(response => {
-            callback (response.data.hits);
-        })
-        .catch(error => { callback ([]); });
-    }
+
+

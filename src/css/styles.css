@@ -8,8 +8,31 @@
 @import url('./reset.css');
 @import url('./base.css');
 
+.btn {
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  height: 40px;
+  background: #4e75ff;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.btn:hover {
+  background: #6c8cff;
+}
+
+.loader.hidden,
+.hidden {
+  display: none;
+}
+
 .loader {
-  display: block;
+  /* display: block; */
   width: 48px;
   height: 48px;
   border: 5px solid #ebeaea;
@@ -27,9 +50,6 @@
   100% {
     transform: rotate(360deg);
   }
-}
-.loader-hidden {
-  display: none;
 }
 
 /* Form */
@@ -65,22 +85,7 @@
   border: 1px solid #4e75ff;
 }
 .submit-btn {
-  outline: none;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
   width: 91px;
-  height: 40px;
-  background: #4e75ff;
-
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
-  color: #fff;
-}
-.submit-btn:hover {
-  background: #6c8cff;
 }
 
 .iziToast-layout3 {
@@ -108,6 +113,7 @@ a {
   max-width: 1176px;
   padding-left: 0;
   margin: 0 auto;
+  margin-bottom: 32px;
 }
 .gallery-item {
   border: 1px solid #808080;
@@ -144,4 +150,8 @@ a {
 }
 .img-text {
   font-weight: 600;
+}
+
+.load-btn {
+  width: 125px;
 }

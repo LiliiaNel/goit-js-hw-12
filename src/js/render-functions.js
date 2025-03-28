@@ -17,6 +17,20 @@ export function showError() {
   });
 }
 
+export function showInfo() {
+  iziToast.info({
+    title: '',
+    message: "We're sorry, but you've reached the end of search results.",
+    messageSize: '16px',
+    messageLineHeight: '1.5',
+    layout: 1,
+    close: true,
+    position: 'topRight',
+    timeout: 3000,
+  });
+}
+
+
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
@@ -47,7 +61,6 @@ let options = {
 const lightbox = new SimpleLightbox('.gallery a', options);
 
 export function renderGallery(images) {
-  clearGallery();
   galleryList.insertAdjacentHTML("beforeend", createGalleryMarkup(images));
   lightbox.refresh();
 }
@@ -59,9 +72,21 @@ galleryList.innerHTML = "";
 const loader = document.querySelector(".loader");
 
 export function showLoader() {
-  loader.classList.remove("loader-hidden");
+  loader.classList.remove("hidden");
 }
 
 export function hideLoader() {
-  loader.classList.add("loader-hidden");
+  loader.classList.add("hidden");
+}
+
+export function scroll (){
+  const galleryCard = document.querySelector(".gallery-item");
+  if (!galleryCard) return;
+  const rect = galleryCard.getBoundingClientRect().height;
+  const rectHeight = rect * 2;
+  window.scrollBy({
+  top: rectHeight,
+  behavior: "smooth",
+  });
+  console.log("scroll");
 }
