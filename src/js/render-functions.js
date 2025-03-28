@@ -79,6 +79,15 @@ export function hideLoader() {
   loader.classList.add("hidden");
 }
 
+const paginateBtn = document.querySelector(".load-btn");
+
+export function showLoadBtn() {
+  paginateBtn.classList.remove("hidden");
+}
+export function hideLoadBtn() {
+  paginateBtn.classList.add("hidden");
+}
+
 export function scroll (){
   const galleryCard = document.querySelector(".gallery-item");
   if (!galleryCard) return;
@@ -88,5 +97,4 @@ export function scroll (){
   top: rectHeight,
   behavior: "smooth",
   });
-  console.log("scroll");
 }

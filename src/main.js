@@ -1,6 +1,6 @@
 
 import searchImages from './js/pixabay-api';
-import { showError, showInfo, renderGallery, clearGallery, showLoader, hideLoader, scroll } from './js/render-functions';
+import { showError, showInfo, renderGallery, clearGallery, showLoader, hideLoader, showLoadBtn, hideLoadBtn, scroll } from './js/render-functions';
 
 const searchForm = document.querySelector(".form");
 const searchInput = document.querySelector("input");
@@ -17,19 +17,21 @@ const onSearch = (event) => {
     }
     clearGallery();
     showLoader();
+    hideLoadBtn();
     searchImages(userSearch, 1, (result, totalHits) => {
         pageNum = 1;
         hideLoader();
         if (result.length === 0) {
             showError();
-            paginateBtn.classList.add("hidden");
+            hideLoadBtn();
         } else {
             clearGallery();
             renderGallery(result);
-            paginateBtn.classList.remove("hidden");
+            showLoadBtn();
             scroll();
         }
-     searchInput.value = "";
+        searchInput.value = "";
+        
     });
 }
 
@@ -43,7 +45,7 @@ const getPaginatedImgs = (event) => {
     searchImages(userSearch, pageNum, (result, totalHits) => {
         const totalPages = Math.ceil(totalHits / 15);
         if (pageNum > totalPages) {
-            paginateBtn.classList.add("hidden");
+            hideLoadBtn();
             hideLoader();
             showInfo();
         } else {
